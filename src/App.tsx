@@ -31,10 +31,10 @@ function Dashboard() {
 }
 
 function App() {
-  const basename = process.env.ROUTE_URL || undefined;
+  const basename = process.env.REACT_APP_ROUTE_URL || undefined;
   return (
     <Router basename={basename}>
-      <p>{process.env.ROUTE_URL || undefined} {process.env.PUBLIC_URL || undefined}</p>
+      <p>{process.env.REACT_APP_ROUTE_URL || "Not found ROUTE_URL"} {process.env.PUBLIC_URL || "Not found ROUTE_URL"}</p>
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
