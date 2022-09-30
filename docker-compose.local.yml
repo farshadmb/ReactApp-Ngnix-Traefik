@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  sample:
+    container_name: sample
+    ports:
+     - 3005:3000
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # volumes:
+    #   - '.:/app'
+    #   - './app/node_modules'
+    environment:
+      - PORT=3000
+      - PUBLIC_URL=/app/
+    stdin_open: true
+    tty: true
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.app.rule=PathPrefix(`/app`) || PathPrefix(`/app/`)"
+      - "traefik.http.routers.app.entrypoints=web"
+      - "traefik.http.middlewares.app.stripprefix.prefixes=app,/app,/app/"
+      - "traefik.http.middlewares.app.stripprefix.forceslash=true"
+
+networks:
+  web: 
+    external: true 

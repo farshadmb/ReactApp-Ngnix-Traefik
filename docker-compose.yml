@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  sample:
+    image: simple-react-redux
+    container_name: final-sample
+    ports:
+      - 4001:80
+    # volumes:
+    #   - '.:/app'
+    #   - './app/node_modules'
+    environment:
+      - PORT=3000
+    stdin_open: true
+    tty: true
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.test.rule=PathPrefix(`/${ROUTE_URL}`) || PathPrefix(`/${ROUTE_URL}/`)"
+      - "traefik.http.routers.test.entrypoints=web"
+      - "traefik.http.middlewares.test.stripprefix.prefixes=${ROUTE_URL},/${ROUTE_URL}"
+      - "traefik.http.middlewares.test.stripprefix.forceslash=true"
+
+networks:
+  web: 
+    external: true
