@@ -1,0 +1,22 @@
+FROM node:14-alpine 
+
+ENV PORT=3000
+WORKDIR /workspace
+
+COPY package.json yarn.lock /workspace/
+
+RUN yarn
+ENV NODE_ENV=development
+
+COPY . .
+
+RUN mkdir -p ${WORKDIR}/../../app
+RUN ls / -lsah
+RUN ls . -lsah
+RUN ls "${WORKDIR}/../../app"
+
+VOLUME [ "${WORKDIR}/../../app" ]
+
+EXPOSE 3000
+
+CMD ["yarn", "start"]

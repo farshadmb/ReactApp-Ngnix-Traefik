@@ -1,0 +1,11 @@
+{
+  "rootPath": "/Users/farshad/Documents/Projects/macOS/Web/sample-code/simple-react-redux/build",
+  "renderPath": "*",
+  "serveRoot": "/app",
+  "exclude": ["api/*"],
+  "serveStaticOptions": {
+    "cacheControl": true,
+    "maxAge": 5,
+    "index": false
+  }
+}

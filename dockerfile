@@ -22,19 +22,14 @@ RUN yarn install
 RUN yarn build:dev
 
 # web-server stage
-FROM keymetrics/pm2:latest-slim as web-server
-
-RUN apt update && apt install bash
+FROM web-serve/react-app as web-server
 
 WORKDIR /app
 RUN mkdir -p /app
 
 COPY --from=builder /app/build /app
-COPY --from=builder /app/static-serve.json /pm2.json
-EXPOSE 3000
+COPY --from=builder /app/static-serve.json /dist/config.json
 
-# CMD ["pm2", "serve", "/app", "3000", "--spa"]
 # Show current folder structure in logs
 RUN ls -al -R
 
-CMD [ "pm2-runtime", "start", "/pm2.json" ]
