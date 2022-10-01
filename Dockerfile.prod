@@ -1,23 +1,28 @@
 # build stage
 FROM node:14.18.2-alpine as build-stage
 
-RUN source .env
+RUN apk add bash
 
-ARG public_url
-ENV PUBLIC_URL=$public_url
-
-RUN echo "Oh look at that base path => {$PUBLIC_URL} != $public_url"
-
-RUN set -x \
-    && apk add --no-cache yarn
+RUN bash
 
 WORKDIR /app
 
 COPY package*.json ./
 COPY . .
 
-RUN yarn install --verbose
-RUN yarn build --verbose
+RUN yarn install --frozen-lockfile
+
+RUN echo "Oh look at that base path => {$PUBLIC_URL} != $public_url"
+RUN set -x \ 
+        && source .env \
+        && cat .env >> /etc/profile \
+        && cat .env >> ~/.bash_profile \
+        && source /etc/profile && source ~/.bash_profile \
+        && echo $PUBLIC_URL && echo $ROUTE_URL && echo $REACT_APP_ROUTE_URL
+RUN set -x pipefail \ 
+    && echo $PUBLIC_URL $REACT_APP_ROUTE_URL
+
+RUN set -x && yarn --verbose build 
 
 # production stage
 FROM nginx:stable-alpine as production-stage

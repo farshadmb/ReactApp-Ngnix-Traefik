@@ -19,16 +19,18 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY . .
 
 RUN yarn install
-RUN yarn build:dev
+RUN yarn build
 
 # web-server stage
 FROM web-serve/react-app as web-server
 
-WORKDIR /app
 RUN mkdir -p /app
 
 COPY --from=builder /app/build /app
 COPY --from=builder /app/static-serve.json /dist/config.json
+
+RUN echo "${PUBLIC_URL}" 
+RUN echo "${REACT_APP_ROUTE_URL}" 
 
 # Show current folder structure in logs
 RUN ls -al -R
