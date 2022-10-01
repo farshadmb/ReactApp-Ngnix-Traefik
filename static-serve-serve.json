@@ -1,5 +1,7 @@
 {
   "rootPath": "/app",
+  "renderPath": "*",
+  "serveRoot": "/app",
   "exclude": ["api/*"],
   "serveStaticOptions": {
     "cacheControl": true,
