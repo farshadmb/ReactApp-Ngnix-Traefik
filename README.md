@@ -1,6 +1,7 @@
+[![CodeQL](https://github.com/farshadmb/ReactApp-Ngnix-Traefik/actions/workflows/codeql-analysis.yml/badge.svg?branch=master)](https://github.com/farshadmb/ReactApp-Ngnix-Traefik/actions/workflows/codeql-analysis.yml) [![CodeQL](https://github.com/farshadmb/ReactApp-Ngnix-Traefik/actions/workflows/codeql-analysis.yml/badge.svg?branch=master)](https://github.com/farshadmb/ReactApp-Ngnix-Traefik/actions/workflows/codeql-analysis.yml)
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
 
 ## Available Scripts
 
